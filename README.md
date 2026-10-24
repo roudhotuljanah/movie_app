@@ -1,28 +1,29 @@
 # 🎬 Asian Movie Catalog
 
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-brightgreen?style=for-the-badge)
+[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+![Platform](https://img.shields.io/badge/Platform-Android-brightgreen?style=for-the-badge)
 ![UTS](https://img.shields.io/badge/Project-UTS%20Mobile%20Programming-orange?style=for-the-badge)
 
-Aplikasi mobile **Asian Movie Catalog** dikembangkan untuk memenuhi Tugas Tengah Semester (UTS) mata kuliah **Mobile Programming** (Semester Ganjil 2025/2026). Aplikasi ini menyajikan katalog film dan drama populer dari tiga negara Asia: **Korea**, **Thailand**, dan **China** secara cepat, aman, dan responsif.
+Aplikasi mobile **Asian Movie Catalog** dikembangkan untuk memenuhi Tugas Tengah Semester (UTS) mata kuliah **Mobile Programming** (Semester Ganjil 2026/2027). Aplikasi ini menyajikan katalog film dan drama populer dari tiga negara Asia: **Korea**, **Thailand**, dan **China** secara cepat, aman, dan responsif.
 
 ---
 
 ## 📌 Deskripsi Aplikasi & Tujuan
 
-**Asian Movie Catalog** mempermudah pecinta sinematografi Asia dalam menjelajahi informasi film dan drama favorit mereka. Pengguna dapat memfilter konten berdasarkan negara asal, melihat tren film populer maupun rilis terbaru, serta membaca informasi mendalam seperti **skor rating**, **jumlah episode resmi**, **sinopsis interaktif**, dan **jajaran pemain utama**.
+**Asian Movie Catalog** mempermudah pecinta sinematografi Asia dalam menjelajahi informasi film dan drama favorit mereka. Pengguna dapat memfilter konten berdasarkan negara asal, melihat film populer maupun rilis terbaru, serta membaca informasi lengkap seperti **skor rating**, **jumlah episode**, **sinopsis interaktif**, dan **jajaran pemain utama**.
 
-Aplikasi ini dibangun menggunakan framework **Flutter** dengan menerapkan prinsip-prinsip desain antarmuka antarmuka (*UI/UX*) modern, navigasi *null-safe*, serta struktur manajemen data lokal yang efisien.
+Aplikasi ini dibangun menggunakan framework **Flutter** dengan menerapkan prinsip desain antarmuka (*UI/UX*) modern, navigasi *null-safe*, dan pengelolaan data lokal yang efisien.
 
 ---
 
 ## 🎨 Tema & Desain Visual
 
-Aplikasi ini mengusung skema warna khusus yang konsisten dan elegan:
-* 🔷 **Navy Blue (`#1B263B`)**: Digunakan sebagai warna utama pada AppBar, Header Beranda, dan penekanan elemen teks penting.
-* 📙 **Gold / Yellow Accent (`#F4A261`)**: Digunakan sebagai warna aksen untuk tombol interaktif, bintang rating, dan badge episode.
-* 📜 **Cream Background (`#FDF6E2`)**: Memberikan kontras lembut yang nyaman di mata penggunanya.
+Aplikasi ini memakai skema warna yang konsisten:
+
+* 🔷 **Navy Blue (`#1B263B`)**: warna utama pada AppBar, header beranda, dan teks penting.
+* 📙 **Gold (`#F4A261`)**: warna aksen untuk tombol, ikon kategori, bintang rating, dan border chip pemain.
+* 📜 **Cream (`#FDF6E2`)**: warna latar halaman yang nyaman di mata.
 
 ---
 
@@ -30,25 +31,38 @@ Aplikasi ini mengusung skema warna khusus yang konsisten dan elegan:
 
 | No | Halaman | File Sumber | Deskripsi & Fungsi Utama |
 |:---:|---|---|---|
-| **1** | **Beranda (Home)** | `lib/view/home.dart` | • Header sapaan dan pencarian interaktif.<br>• Tombol navigasi cepat Kategori Negara (Korea, Thailand, China).<br>• Daftar **Film Populer** dalam bentuk *scroll horizontal*.<br>• Daftar **Film Terbaru** dalam bentuk *scroll vertikal*. |
-| **2** | **Daftar Kategori** | `lib/view/category.dart` | • Menampilkan seluruh film terfilter sesuai negara yang dipilih pengguna.<br>• Informasi ringkasan meliputi judul, genre, tahun rilis, dan jumlah episode.<br>• Navigasi langsung menuju halaman Detail. |
-| **3** | **Detail Film** | `lib/view/detail.dart` | • Tampilan *Banner Poster* beresolusi tinggi.<br>• Informasi mendalam: Judul, Rating, Genre, Tahun, dan **Jumlah Episode** yang akurat.<br>• Feature **ReadMore** pada sinopsis.<br>• Chip daftar pemain (*Cast*) utama. |
+| **1** | **Beranda (Home)** | `lib/view/home.dart` | • Header sapaan dan kolom pencarian.<br>• Tombol Kategori Negara (Korea, Thailand, China).<br>• **Film Populer** dalam bentuk *scroll horizontal*.<br>• **Film Terbaru** dalam bentuk *scroll vertikal*. |
+| **2** | **Daftar Kategori** | `lib/view/category.dart` | • Menampilkan film yang difilter sesuai negara pilihan.<br>• Ringkasan judul, genre, tahun rilis, dan jumlah episode.<br>• Navigasi langsung ke halaman Detail. |
+| **3** | **Detail Film** | `lib/view/detail.dart` | • Banner poster berukuran besar.<br>• Informasi judul, rating, genre, tahun, dan jumlah episode.<br>• Fitur **ReadMore** pada sinopsis.<br>• Chip daftar pemain utama. |
 
 ---
 
 ## 🗺️ Arsitektur & Navigasi
 
-Sistem navigasi dikelola secara terpusat pada file `lib/main.dart` menggunakan metode **`onGenerateRoute`** untuk memastikan transfer data (*argument passing*) aman dari *null pointer exception*:
+Navigasi dikelola di `lib/main.dart` menggunakan **`onGenerateRoute`** agar pengiriman data (*argument passing*) aman dari *null pointer exception*:
 
-* **`/`** : Rute utama mengarah ke `Home()`.
-* **`/category`** : Menerima parameter `categoryName` berjenis `String`.
-* **`/detail`** : Menerima parameter `movieId` berjenis `int`.
+* **`/`** : rute utama menuju `Home()`.
+* **`/category`** : menerima parameter `categoryName` bertipe `String`.
+* **`/detail`** : menerima parameter `movieId` bertipe `int`.
+
+### Struktur Folder
+
+```
+lib/
+├── main.dart
+├── model/
+│   └── movie.dart
+└── view/
+    ├── home.dart
+    ├── category.dart
+    └── detail.dart
+```
 
 ---
 
-## 🍿 Data Katalog Film (15 Data Terkurasi)
+## 🍿 Data Katalog Film (15 Data)
 
-Aplikasi mengelola 15 data lokal berstruktur pada `lib/model/movie.dart` secara akurat:
+Aplikasi memakai 15 data lokal pada `lib/model/movie.dart`:
 
 | No | Judul Film / Drama | Negara | Jumlah Episode | Rating | Genre |
 |:---:|---|:---:|:---:|:---:|---|
@@ -57,8 +71,8 @@ Aplikasi mengelola 15 data lokal berstruktur pada `lib/model/movie.dart` secara 
 | 3 | Goblin (The Lonely God) | Korea | 16 Episode | ⭐ 8.6 | Fantasy, Romance |
 | 4 | All of Us Are Dead | Korea | 12 Episode | ⭐ 7.5 | Action, Horror |
 | 5 | Business Proposal | Korea | 12 Episode | ⭐ 8.1 | Comedy, Romance |
-| 6 | Bad Genius | Thailand | 1 Film / 12 Ep | ⭐ 7.6 | Thriller, Drama |
-| 7 | Girl From Nowhere | Thailand | 16 Episode | ⭐ 7.7 | Mystery, Thriller |
+| 6 | Bad Genius | Thailand | 1 Film / 12 Episode Series | ⭐ 7.6 | Thriller, Drama |
+| 7 | Girl From Nowhere | Thailand | 16 Episode - 2 Season | ⭐ 7.7 | Mystery, Thriller |
 | 8 | Friend Zone | Thailand | 1 Film | ⭐ 7.2 | Romance, Comedy |
 | 9 | Pee Mak | Thailand | 1 Film | ⭐ 7.2 | Horror, Comedy |
 | 10 | Hunger | Thailand | 1 Film | ⭐ 6.7 | Drama, Thriller |
@@ -70,22 +84,15 @@ Aplikasi mengelola 15 data lokal berstruktur pada `lib/model/movie.dart` secara 
 
 ---
 
-## 🛠️ Pustaka & Dependensi Tambahan
+## 🛠️ Pustaka & Dependensi
 
-* **`flutter/material.dart`**: Komponen utama antarmuka Material Design.
-* **`readmore: ^2.2.0`**: Digunakan di halaman detail untuk fitur penyuntingan sinopsis panjang secara dinamis (`Selengkapnya` / `Sembunyikan`).
+* **`flutter/material.dart`**: komponen antarmuka Material Design.
+* **`readmore: 2.2.0`**: fitur sinopsis yang dapat diperluas (`Selengkapnya` / `Sembunyikan`) pada halaman detail.
 
 ---
 
-## ⚙️ Cara Menjalankan Proyek (*Getting Started*)
+## 👤 Pembuat
 
-### Prasyarat
-* Flutter SDK (Versi 3.x atau terbaru)
-* VS Code / Android Studio
-* Perangkat Fisik Android / Emulator
-
-### Langkah Instalasi
-1. **Clone Repositori Ini**:
-   ```bash
-   git clone [https://github.com/roudhotuljanah/movie_app.git](https://github.com/roudhotuljanah/movie_app.git)
-   cd movie_app
+* **Nama**: [Roudhotul Janah]
+* **NIM**: [240605110212]
+* **Kelas**: [Mobile Programming Praktikum J]
